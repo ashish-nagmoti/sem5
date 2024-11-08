@@ -1,3 +1,4 @@
+#divide and conquer is dividing and solvinf log(n)
 def binary_search(arr, target):
     low = 0
     high = len(arr) - 1
