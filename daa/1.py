@@ -1,28 +1,29 @@
-def binary_search(low,high,target,arr):
-    
-    if low<=high:
-        
-        mid = (low+high)// 2
-       
-        if arr[mid] == target:
-        
-            return mid
-        elif arr[mid]>target:
-            high = mid-1
-            return binary_search(low,high,target,arr)
-        else:
-            low = mid+1
-            return binary_search(low,high,target,arr)
-    else:
-        return -1
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+    steps = 0
 
-arr = [2,5,3,1]
-target = 3
-arr.sort()
-ans = binary_search(0,len(arr)-1,target,arr)
-if ans!=-1:
-    print("ans:",ans)
+    while low <= high:
+        mid = (low + high) // 2
+        steps += 1
+
+        if arr[mid] == target:
+            return mid, steps
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1, steps
+
+
+arr = input("enter array separeted by spaces")
+arr = list(map(int,arr.split()))
+target = int(input("enter target"))
+index, steps = binary_search(arr, target)
+
+if index != -1:
+    print(f"Target {target} found at index {index} in {steps} steps.")
 else:
-    print("no")
-    
+    print(f"Target {target} not found in the array in {steps} steps.")
 
